@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>lit test</title>
+  
+    <!--
+      JSPM Generator Import Map
+      Edit URL: https://generator.jspm.io/#Y2thZGBiDs0rySzJSU1hyMkscTDWM9QzYMgprcjPA7JN9EwA5AgGKiQA
+    -->
+
+    <script type="importmap">
+    {
+      "imports": {
+        "lit": "https://cdn.jsdelivr.net/npm/lit@3.1.0/index.js",
+        "luxon": "https://cdn.jsdelivr.net/npm/luxon@3.4.4/src/luxon.js"
+      },
+      "scopes": {
+        "https://cdn.jsdelivr.net/": {
+          "@lit/reactive-element": "https://cdn.jsdelivr.net/npm/@lit/reactive-element@2.0.2/reactive-element.js",
+          "lit-element/lit-element.js": "https://cdn.jsdelivr.net/npm/lit-element@4.0.2/lit-element.js",
+          "lit-html": "https://cdn.jsdelivr.net/npm/lit-html@3.1.0/lit-html.js",
+          "lit-html/is-server.js": "https://cdn.jsdelivr.net/npm/lit-html@3.1.0/is-server.js"
+        }
+      }
+    }
+    </script>
+
+    <!-- ES Module Shims: Import maps polyfill for older browsers without import maps support (eg Safari 16.3) -->
+    <script async src=https://cdn.jsdelivr.net/npm/es-module-shims@1.8.2/dist/es-module-shims.js crossorigin="anonymous"></script>
+
+    <script type="module">
+      import {html, css, render} from 'lit';
+      import BaseTable from './js/BaseTable.mjs';
+
+      class MyTable extends BaseTable {
+        constructor() {
+          super();
+          this.tows = [
+            {id: 2, content: 'hello'}
+          ];
+        }
+
+        renderHeader() {
+          return html`  
+            <tr>
+              <th>id</th>
+              <th>내용</th>
+            </tr>
+          `;
+        }
+
+        renderRow(row) {
+          const {id, content} = row;
+          return html`
+            <tr>
+              <td>${id}</td>
+              <td>${content}</td>
+            </tr>`;
+        }
+      }
+      customElements.define('my-table', MyTable);
+    </script>
+  </head>
+
+<body>
+  <my-table></my-table>
+</body>
+
+</html>
