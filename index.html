@@ -38,7 +38,7 @@
       class MyTable extends BaseTable {
         constructor() {
           super();
-          this.tows = [
+          this.rows = [
             {id: 2, content: 'hello'}
           ];
         }
@@ -62,11 +62,27 @@
         }
       }
       customElements.define('my-table', MyTable);
+      
+      let id = 1;
+      
+      function addComment(content) {
+        let table = document.getElementById('table');
+        id++;
+        table.rows = [...table.rows, {id, content}];
+      }
+      
+      function addComment1() {
+        let commentIn = document.getElementById('commentIn');
+        addComment(commentIn.value);
+      }
     </script>
   </head>
 
 <body>
-  <my-table></my-table>
+  <my-table id="table"></my-table>
+  <br />
+  <br />
+  새 코멘트: <input type="text" id="comment-in"> <button onclick="addComment1()">입력</button>
 </body>
 
 </html>
